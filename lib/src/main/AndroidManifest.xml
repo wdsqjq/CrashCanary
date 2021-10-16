@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="wsj.crash.lib">
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <application>
+        <activity
+            android:name=".ui.CrashInfoActivity"
+            android:taskAffinity="wsj.crash.lib" />
+        <activity
+            android:name=".ui.CrashViewerActivity"
+            android:icon="@mipmap/ic_crash_icon"
+            android:taskAffinity="wsj.crash.lib">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".service.MyService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":crashcanary" />
+
+        <!--<provider
+            android:name=".cp.CrashContentProvider"
+            android:authorities="${applicationId}.crash.logger"
+            android:enabled="true"
+            android:exported="false" />-->
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <!-- This entry makes WorkManagerInitializer discoverable. -->
+            <!-- 如果A依赖了B,则只需要在此处注册A即可。value值必须为"androidx.startup",否则不生效 -->
+            <meta-data
+                android:name="wsj.crash.lib.CrashCanaryInitializer"
+                android:value="androidx.startup" />
+        </provider>
+
+    </application>
+
+</manifest>
