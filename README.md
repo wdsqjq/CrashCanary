@@ -27,7 +27,7 @@
 **Step 2.** Add the dependency
 
 ```groovy
-debugImplementation  'com.github.wdsqjq:CrashCanary:1.0.4'
+debugImplementation  'com.github.wdsqjq:CrashCanary:1.0.5'
 ```
 
 通过`debugImplementation`方式添加依赖只在debug模式生效，release模式不会生效。
