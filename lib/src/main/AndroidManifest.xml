@@ -7,10 +7,12 @@
     <application>
         <activity
             android:name=".ui.CrashInfoActivity"
+            android:exported="false"
             android:taskAffinity="wsj.crash.lib" />
         <activity
             android:name=".ui.CrashViewerActivity"
             android:icon="@mipmap/ic_crash_icon"
+            android:exported="false"
             android:taskAffinity="wsj.crash.lib">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

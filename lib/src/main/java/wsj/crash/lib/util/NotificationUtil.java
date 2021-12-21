@@ -86,7 +86,7 @@ public class NotificationUtil {
 
         NotificationCompat.Builder builder = initBaseBuilder(context, "CrashCanary", "正在检测程序运行异常", true);
         Intent intent = new Intent(context, CrashViewerActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(context, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent contentIntent = PendingIntent.getActivity(context, 1, intent, PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(contentIntent);
 
         return builder.build();

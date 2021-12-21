@@ -1,12 +1,12 @@
 package wsj.crash.lib.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_crash_viewer.*
+import androidx.recyclerview.widget.RecyclerView
 import wsj.crash.lib.R
 import wsj.crash.lib.adapter.LogAdapter
 import wsj.crash.lib.bean.LogBean
@@ -15,6 +15,9 @@ import wsj.crash.lib.db.DbManager
 class CrashViewerActivity : AppCompatActivity() {
     lateinit var adapter: LogAdapter
     private val mData = ArrayList<LogBean>()
+
+    private lateinit var rvLog: RecyclerView
+    private lateinit var tvEmpty: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +32,9 @@ class CrashViewerActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        rvLog = findViewById(R.id.rvLog)
+        tvEmpty = findViewById(R.id.tvEmpty)
+
         adapter = LogAdapter(this, mData)
         adapter.setOnDeleteListener {
             DbManager.getInstance(this).deleteById(it)
