@@ -29,9 +29,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import wsj.crash.lib.R;
 import wsj.crash.lib.db.DbManager;
+import wsj.crash.lib.state.FragmentWatcher;
 
 
 public class CrashHandler implements UncaughtExceptionHandler {
@@ -179,6 +178,11 @@ public class CrashHandler implements UncaughtExceptionHandler {
         String result = writer.toString();
         sb.append("\n");
         sb.append(result);
+        sb.append("\n");
+
+        for (String fragmentState : FragmentWatcher.Companion.getFragmentStates()) {
+            sb.append(fragmentState).append("\n");
+        }
 
         try {
             long timestamp = System.currentTimeMillis();
