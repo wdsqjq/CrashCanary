@@ -180,6 +180,8 @@ public class CrashHandler implements UncaughtExceptionHandler {
         sb.append(result);
         sb.append("\n");
 
+        sb.append("fragment state: ------------------------>");
+
         for (String fragmentState : FragmentWatcher.Companion.getFragmentStates()) {
             sb.append(fragmentState).append("\n");
         }
