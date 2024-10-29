@@ -58,7 +58,7 @@ public class NotificationUtil {
 
         NotificationCompat.Builder builder = initBaseBuilder(context, title, content, false);
         Intent intent = new Intent(context, CrashViewerActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(context, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent contentIntent = PendingIntent.getActivity(context, 1, intent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(contentIntent);
 
         notificationManager.notify(0, builder.build());
@@ -75,7 +75,7 @@ public class NotificationUtil {
             intent.setAction(Long.toString(System.currentTimeMillis()));
         }
         // 需要传递参数需设置为：PendingIntent.FLAG_UPDATE_CURRENT
-        PendingIntent contentIntent = PendingIntent.getActivity(context, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent contentIntent = PendingIntent.getActivity(context, 1, intent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(contentIntent);
 
         notificationManager.notify(0, builder.build());
